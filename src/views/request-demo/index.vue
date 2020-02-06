@@ -1,7 +1,7 @@
 <template>
   <section class="request">
     <goBack title="请求示例" />
-    <van-button type="primary" class="request-btn" @click="request">请求数据</van-button>
+    <van-button type="primary" class="request-btn" @click="request" :disabled="list.length > 0">请求数据</van-button>
     <van-button type="default" class="request-btn" @click="reset" :disabled="list.length === 0">重置数据</van-button>
     <div class="loding-wrapper">
       <van-loading v-if="requesting" />
@@ -39,6 +39,9 @@ export default {
   methods: {
     request() {
       this.requesting = true
+      if (this.list.length > 0) {
+        return
+      }
       getList()
         .then(res => {
           if (_.get(res, 'data.top_stories')) {
