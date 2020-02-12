@@ -25,14 +25,14 @@ const routes = [
     meta: {
       title: '请求数据示例'
     },
-    component: () => import('@/views/request-demo')
+    component: () => import(/* webpackChunkName: "vant-demo" */ '@/views/request-demo')
   },
   {
     name: 'vuex',
     meta: {
       title: 'vuex示例'
     },
-    component: () => import('@/views/vuex-demo')
+    component: () => import(/* webpackChunkName: "vant-demo" */ '@/views/vuex-demo')
   },
   ...vantDemoModule,
   {
