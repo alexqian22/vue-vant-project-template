@@ -15,7 +15,7 @@ const routes = [
     meta: {
       title: 'vue-vant-project-template'
     },
-    component: import(/* webpackChunkName: "home" */ '@/views/home')
+    component: () => import(/* webpackChunkName: "home" */ '@/views/home')
   },
   {
     name: 'request',
