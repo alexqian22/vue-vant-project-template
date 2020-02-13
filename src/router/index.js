@@ -3,9 +3,6 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-// home
-import home from '@views/home'
-
 // 全局配置的页面默认title
 import { baseTitle } from '@/config'
 
@@ -18,21 +15,21 @@ const routes = [
     meta: {
       title: 'vue-vant-project-template'
     },
-    component: home
+    component: import(/* webpackChunkName: "home" */ '@/views/home')
   },
   {
     name: 'request',
     meta: {
       title: '请求数据示例'
     },
-    component: () => import(/* webpackChunkName: "vant-demo" */ '@/views/request-demo')
+    component: () => import(/* webpackChunkName: "other-demo" */ '@/views/request-demo')
   },
   {
     name: 'vuex',
     meta: {
       title: 'vuex示例'
     },
-    component: () => import(/* webpackChunkName: "vant-demo" */ '@/views/vuex-demo')
+    component: () => import(/* webpackChunkName: "other-demo" */ '@/views/vuex-demo')
   },
   ...vantDemoModule,
   {
