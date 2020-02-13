@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import home from '@/views/home'
 
 Vue.use(Router)
 
 // 全局配置的页面默认title
 import { baseTitle } from '@/config'
+// 加载提示
+import { Toast } from 'vant'
 
 // 路由模块引入
 import vantDemoModule from './modules/vant-demo'
@@ -15,21 +18,21 @@ const routes = [
     meta: {
       title: 'vue-vant-project-template'
     },
-    component: () => import(/* webpackChunkName: "home" */ '@/views/home')
+    component: home
   },
   {
     name: 'request',
     meta: {
       title: '请求数据示例'
     },
-    component: () => import(/* webpackChunkName: "other-demo" */ '@/views/request-demo')
+    component: () => import(/* webpackChunkName: "demo" */ '@/views/request-demo')
   },
   {
     name: 'vuex',
     meta: {
       title: 'vuex示例'
     },
-    component: () => import(/* webpackChunkName: "other-demo" */ '@/views/vuex-demo')
+    component: () => import(/* webpackChunkName: "demo" */ '@/views/vuex-demo')
   },
   ...vantDemoModule,
   {
@@ -54,7 +57,16 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const title = to.meta && to.meta.title
   title ? (document.title = title) : (document.title = baseTitle)
+  Toast.loading({
+    duration: 0,
+    message: '加载中...',
+    forbidClick: true
+  })
   next()
+})
+
+router.afterEach(() => {
+  Toast.clear()
 })
 
 export default router
