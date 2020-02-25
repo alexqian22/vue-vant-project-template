@@ -43,7 +43,7 @@
 │ ├─assets ---------------------- // 静态资源
 │ │ └─img
 │ ├─components 
-│ │ └─HelloWorld.vue 
+│ │ └─goBack.vue 
 │ ├─main.js 
 │ ├─router ---------------------- // 路由
 │ │ ├─index.js 
@@ -71,9 +71,7 @@
 │ │ ├─index.js 
 │ │ └─request.js 
 │ └─views ----------------------- // 页面
-│   ├─About.vue 
-│   ├─Home.vue 
-│   └─List.vue 
+│   
 └─vue.config.js ----------------- // vue及webpack配置
 ```
 
