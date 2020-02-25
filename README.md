@@ -1,5 +1,7 @@
 # vue-vant-project-template
 
+利用 [vant](https://github.com/youzan/vant) 和 [vue](https://github.com/vuejs/vue) 构建的移动端快速开发模板，高效、轻量、简洁。
+
 ## 内置功能
 * vuex 
 * vue-router 路由模块化配置
