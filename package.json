@@ -8,7 +8,7 @@
     "build-test": "vue-cli-service build --mode test_env",
     "dev": "vue-cli-service serve",
     "report": "vue-cli-service build --report",
-    "lint": "eslint --ext .js,.vue src"
+    "lint-fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "axios": "^0.19.2",

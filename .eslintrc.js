@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: ['plugin:vue/essential', '@vue/prettier'],
   rules: {
-    'no-console': process.env.NODE_ENV !== 'production' ? 0 : 2 //禁止使用 console 默认是禁止的
+    'no-console': 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   },
   parserOptions: {
     parser: 'babel-eslint'
