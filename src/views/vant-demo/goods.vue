@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { NavBar, Tag, Col, Icon, Cell, CellGroup, Swipe, Toast, SwipeItem, GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant'
+import { NavBar, Tag, Col, Icon, Cell, CellGroup, Swipe, SwipeItem, GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant'
 import goBack from '@components/goBack'
 export default {
   components: {
@@ -81,7 +81,7 @@ export default {
       this.$router.push('cart')
     },
     sorry() {
-      Toast('暂无后续逻辑~')
+      this.$toast('暂无后续逻辑~')
     }
   }
 }

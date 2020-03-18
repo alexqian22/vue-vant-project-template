@@ -1,4 +1,4 @@
-export function openWindow(url, title, w, h) {
+export const openWindow = (url, title, w, h) => {
   // Fixes dual-screen position                            Most browsers       Firefox
   const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left
   const dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top
@@ -35,7 +35,7 @@ export function openWindow(url, title, w, h) {
  * @param {string} cFormat
  * @returns {string}
  */
-export function parseTime(time, cFormat) {
+export const parseTime = (time, cFormat) => {
   if (arguments.length === 0) {
     return null
   }
@@ -80,7 +80,7 @@ export function parseTime(time, cFormat) {
  * @param {string} option
  * @returns {string}
  */
-export function formatTime(time, option) {
+export const formatTime = (time, option) => {
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {
@@ -106,4 +106,10 @@ export function formatTime(time, option) {
   } else {
     return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
   }
+}
+export const isExist = t => {
+  if (t != undefined && t != 'undefined' && t != null && t != 'null' && t != '' && t != 'NA') {
+    return true
+  }
+  return false
 }

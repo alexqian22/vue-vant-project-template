@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast } from 'vant'
+import { Checkbox, CheckboxGroup, Card, SubmitBar } from 'vant'
 import goBack from '@components/goBack'
 export default {
   components: {
@@ -66,7 +66,7 @@ export default {
       return (price / 100).toFixed(2)
     },
     onSubmit() {
-      Toast('点击结算')
+      this.$toast('点击结算')
     }
   }
 }

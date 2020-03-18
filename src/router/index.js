@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/views/home'
 
-Vue.use(Router)
-
 // 全局配置的页面默认title
 import { baseTitle } from '@/config'
 // 加载提示
 import { Toast } from 'vant'
+
+Vue.use(Router)
+Vue.use(Toast)
 
 // 路由模块引入
 import vantDemoModule from './modules/vant-demo'

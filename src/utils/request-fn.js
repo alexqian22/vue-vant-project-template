@@ -2,7 +2,6 @@ import axios from 'axios' // 引入axios
 import qs from 'qs' // 引入qs
 import { Toast } from 'vant'
 import { getToken } from '@utils/auth'
-import _ from 'lodash'
 
 const SUCCESS_CODE = 0 // 请求成功code
 const SYSTEMERR_CODE = 999 // 系统错误code
