@@ -1,7 +1,7 @@
 import { ADD_COUNT, RESET_COUNT } from '../mutation-types'
 
 const state = {
-  count: 0
+  count: 0,
 }
 
 const mutations = {
@@ -15,23 +15,23 @@ const mutations = {
   },
   [RESET_COUNT](state) {
     state.count = 0
-  }
+  },
 }
 
 const actions = {
   incrementAsync({ commit }, count) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         commit('ADD_COUNT', count)
         resolve()
       }, 1500)
     })
-  }
+  },
 }
 
 export default {
   namespaced: false, //避免模块命名冲突，类似style中的scoped
   state,
   mutations,
-  actions
+  actions,
 }

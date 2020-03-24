@@ -59,7 +59,7 @@ export const parseTime = (time, cFormat) => {
     h: date.getHours(),
     i: date.getMinutes(),
     s: date.getSeconds(),
-    a: date.getDay()
+    a: date.getDay(),
   }
   const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]
@@ -107,7 +107,7 @@ export const formatTime = (time, option) => {
     return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
   }
 }
-export const isExist = t => {
+export const isExist = (t) => {
   if (t != undefined && t != 'undefined' && t != null && t != 'null' && t != '' && t != 'NA') {
     return true
   }

@@ -17,33 +17,33 @@ const routes = [
   {
     path: '/',
     meta: {
-      title: 'vue-vant-project-template'
+      title: 'vue-vant-project-template',
     },
-    component: home
+    component: home,
   },
   {
     name: 'request',
     meta: {
-      title: '请求数据示例'
+      title: '请求数据示例',
     },
-    component: () => import(/* webpackChunkName: "demo" */ '@/views/request-demo')
+    component: () => import(/* webpackChunkName: "demo" */ '@/views/request-demo'),
   },
   {
     name: 'vuex',
     meta: {
-      title: 'vuex示例'
+      title: 'vuex示例',
     },
-    component: () => import(/* webpackChunkName: "demo" */ '@/views/vuex-demo')
+    component: () => import(/* webpackChunkName: "demo" */ '@/views/vuex-demo'),
   },
   ...vantDemoModule,
   {
     path: '*',
-    redirect: '/'
-  }
+    redirect: '/',
+  },
 ]
 
 // 根据 name 设置 path 参数
-routes.forEach(route => {
+routes.forEach((route) => {
   route.path = route.path || '/' + (route.name || '')
 })
 
@@ -51,7 +51,7 @@ routes.forEach(route => {
 const router = new Router({
   mode: 'hash',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 // 设置页面title
@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
   Toast.loading({
     duration: 0,
     message: '加载中...',
-    forbidClick: true
+    forbidClick: true,
   })
   next()
 })

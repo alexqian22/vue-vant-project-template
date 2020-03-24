@@ -11,18 +11,18 @@ import { NavBar } from 'vant'
 export default {
   name: 'goBack',
   components: {
-    [NavBar.name]: NavBar
+    [NavBar.name]: NavBar,
   },
   props: {
     title: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   methods: {
     goBack() {
       this.$router.go(-1)
-    }
-  }
+    },
+  },
 }
 </script>

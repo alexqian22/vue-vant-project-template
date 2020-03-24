@@ -1,3 +1,3 @@
 module.exports = {
-  baseTitle: 'vue-vant-project-template'
+  baseTitle: 'vue-vant-project-template',
 }

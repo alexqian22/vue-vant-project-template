@@ -32,8 +32,8 @@ export default {
     [Col.name]: Col,
     [Icon.name]: Icon,
     [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup
-  }
+    [CellGroup.name]: CellGroup,
+  },
 }
 </script>
 

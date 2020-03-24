@@ -19,7 +19,7 @@ export default {
     [Card.name]: Card,
     [Checkbox.name]: Checkbox,
     [SubmitBar.name]: SubmitBar,
-    [CheckboxGroup.name]: CheckboxGroup
+    [CheckboxGroup.name]: CheckboxGroup,
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
           desc: '约250g，2根',
           price: 200,
           num: 1,
-          thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg'
+          thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg',
         },
         {
           id: '2',
@@ -39,7 +39,7 @@ export default {
           desc: '约600g',
           price: 690,
           num: 1,
-          thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg'
+          thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg',
         },
         {
           id: '3',
@@ -47,9 +47,9 @@ export default {
           desc: '约680g/3个',
           price: 2680,
           num: 1,
-          thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg'
-        }
-      ]
+          thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg',
+        },
+      ],
     }
   },
   computed: {
@@ -59,7 +59,7 @@ export default {
     },
     totalPrice() {
       return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0), 0)
-    }
+    },
   },
   methods: {
     formatPrice(price) {
@@ -67,8 +67,8 @@ export default {
     },
     onSubmit() {
       this.$toast('点击结算')
-    }
-  }
+    },
+  },
 }
 </script>
 

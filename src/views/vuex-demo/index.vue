@@ -22,17 +22,17 @@ export default {
   data() {
     return {
       requesting: false,
-      value: 1
+      value: 1,
     }
   },
   components: {
     goBack,
     [Button.name]: Button,
-    [Field.name]: Field
+    [Field.name]: Field,
   },
   computed: {
     // 使用对象展开运算符将 getter 混入 computed 对象中
-    ...mapGetters(['storeCount'])
+    ...mapGetters(['storeCount']),
   },
   methods: {
     // 将 `this.ADD_COUNT()` 映射为 `this.$store.commit('ADD_COUNT')`
@@ -44,8 +44,8 @@ export default {
       this.incrementAsync(this.value).then(() => {
         this.requesting = false
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

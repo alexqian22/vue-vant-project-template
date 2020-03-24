@@ -26,11 +26,11 @@ export default {
   },
   components: {
     [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup
+    [CellGroup.name]: CellGroup,
   },
   watch: {},
   mounted() {},
-  methods: {}
+  methods: {},
 }
 </script>
 

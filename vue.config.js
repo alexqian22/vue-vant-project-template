@@ -7,7 +7,7 @@ const NOT_DEV = process.env.NODE_ENV !== 'development'
 
 const globalConfig = require('./src/config/index.js') //全局配置
 
-const resolve = dir => path.join(__dirname, dir)
+const resolve = (dir) => path.join(__dirname, dir)
 
 module.exports = {
   // 打包输出文件夹名字
@@ -20,20 +20,20 @@ module.exports = {
       postcss: {
         plugins: [
           pxtoviewport({
-            viewportWidth: 375 //设计稿的视口宽度
-          })
-        ]
-      }
-    }
+            viewportWidth: 375, //设计稿的视口宽度
+          }),
+        ],
+      },
+    },
   },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
       // 注入全局样式
-      patterns: [path.resolve(__dirname, 'src/styles/index.less')]
-    }
+      patterns: [path.resolve(__dirname, 'src/styles/index.less')],
+    },
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('@api', resolve('src/api'))
@@ -54,7 +54,7 @@ module.exports = {
       .use('babel-loader')
       .options({
         plugins: ['lodash'],
-        presets: [['@babel/env', { targets: { node: 6 } }]]
+        presets: [['@babel/env', { targets: { node: 6 } }]],
       })
       .end()
     // 压缩代码
@@ -67,19 +67,19 @@ module.exports = {
           name: 'chunk-libs',
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
-          chunks: 'initial' // 只打包初始时依赖的第三方
+          chunks: 'initial', // 只打包初始时依赖的第三方
         },
         commons: {
           name: 'chunk-commons',
           test: resolve('src/components'), // can customize your rules
           minChunks: 3, //  minimum common number
           priority: 5,
-          reuseExistingChunk: true
-        }
-      }
+          reuseExistingChunk: true,
+        },
+      },
     })
   },
-  configureWebpack: config => {
+  configureWebpack: (config) => {
     config.name = globalConfig.baseTitle //用于设置public/index.html的默认title
     const plugins = []
     if (NOT_DEV) {
@@ -90,10 +90,10 @@ module.exports = {
           test: productionGzipExtensions,
           threshold: 10240, // 只处理比这个值大的资源，按字节计算
           minRatio: 0.8, // 只有压缩率比这个值小的资源才会被处理
-          deleteOriginalAssets: false //是否删除原始资源 默认false
+          deleteOriginalAssets: false, //是否删除原始资源 默认false
         })
       )
     }
     config.plugins = [...config.plugins, ...plugins]
-  }
+  },
 }

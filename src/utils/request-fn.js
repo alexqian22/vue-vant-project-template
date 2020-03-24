@@ -11,10 +11,10 @@ function showToast(message, duration = 2000) {
   Toast({
     forbidClick: true,
     message,
-    duration
+    duration,
   })
 }
-const isExist = t => {
+const isExist = (t) => {
   if (t != undefined && t != 'undefined' && t != null && t != 'null' && t != '' && t != 'NA') {
     return true
   }
@@ -24,23 +24,23 @@ const isExist = t => {
 const axiosInstance = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API_HOST,
   baseURL: process.env.VUE_APP_BASE_API_HOST,
-  timeout: 5000
+  timeout: 5000,
 })
 
 // 拦截器
 axiosInstance.interceptors.request.use(
   // 这里的config为请求方法传入的对象+默认参数
-  config => {
+  (config) => {
     return config
   },
-  error => {
+  (error) => {
     console.log(error) // 打印错误日志
     return Promise.reject(error)
   }
 )
 
 axiosInstance.interceptors.response.use(
-  response => {
+  (response) => {
     const res = response.data
     // console.log(res);
     const resultMsg = res.resultMsg
@@ -70,9 +70,9 @@ axiosInstance.interceptors.response.use(
       }
     }
   },
-  error => {
+  (error) => {
     Toast({
-      message: error.message
+      message: error.message,
     })
     return Promise.reject(error)
   }
@@ -106,17 +106,17 @@ export const fetch = (method, url, data = {}, showLoading = false, otherUrl) => 
     // 开启loading
     Toast.loading({
       duration: 0, // 持续展示 toast
-      forbidClick: true
+      forbidClick: true,
     })
   }
   const request = axiosInstance(requestOption)
-    .then(res => {
+    .then((res) => {
       if (showLoading) {
         Toast.clear()
       }
       return Promise.resolve(res)
     })
-    .catch(error => {
+    .catch((error) => {
       return Promise.reject(error)
     })
   return request

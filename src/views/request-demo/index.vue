@@ -25,14 +25,14 @@ export default {
   data() {
     return {
       list: [],
-      requesting: false
+      requesting: false,
     }
   },
   components: {
     [Loading.name]: Loading,
     [Button.name]: Button,
     [Panel.name]: Panel,
-    goBack
+    goBack,
   },
   watch: {},
   mounted() {},
@@ -43,7 +43,7 @@ export default {
         return
       }
       getList()
-        .then(res => {
+        .then((res) => {
           if (_.get(res, 'data.top_stories')) {
             this.list = res.data.top_stories
           }
@@ -58,8 +58,8 @@ export default {
       } else {
         this.list = []
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
