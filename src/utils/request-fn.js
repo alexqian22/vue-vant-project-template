@@ -1,10 +1,13 @@
 import axios from 'axios' // 引入axios
 import qs from 'qs' // 引入qs
+// import { tx } from "./api";
+import { baseUrl } from './env'
 import { Toast } from 'vant'
-import { getToken } from '@utils/auth'
+import { getCookie, isExist } from './mUtils'
 
 const SUCCESS_CODE = 0 // 请求成功code
 const SYSTEMERR_CODE = 999 // 系统错误code
+const TOKEN_NAME = 'PET_TOKEN'
 
 // 错误信息提示方法
 function showToast(message, duration = 2000) {
@@ -14,17 +17,16 @@ function showToast(message, duration = 2000) {
     duration,
   })
 }
-const isExist = (t) => {
-  if (t != undefined && t != 'undefined' && t != null && t != 'null' && t != '' && t != 'NA') {
-    return true
-  }
-  return false
-}
+
 // 创建axios实例
 const axiosInstance = axios.create({
   // baseURL: process.env.VUE_APP_BASE_API_HOST,
-  baseURL: process.env.VUE_APP_BASE_API_HOST,
+  baseURL: baseUrl,
   timeout: 5000,
+  withCredentials: true, // 表示跨域请求时是否需要使用凭证
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
 })
 
 // 拦截器
@@ -82,27 +84,43 @@ axiosInstance.interceptors.response.use(
  * @param { string} method 请求方法
  * @param { string } url 请求地址
  * @param { object } data 请求参数
- * @param { boolean } showLoading 是否显示加载，默认不显示
- * @param { string } otherUrl 需要替换掉的新aip地址
+ * @param { object} optionalParams 选填参数
+ * @param { boolean } optionalParams.headersType 是否显示加载，默认不显示
+ * @param { string } optionalParams.otherUrl 需要替换掉的新api地址
+ * @param { boolean } optionalParams.showLoading 是否显示加载，默认不显示
  * @return { function } Promise
  */
 
-export const fetch = (method, url, data = {}, showLoading = false, otherUrl) => {
+export const fetch = (method, url, data = {}, optionalParams = {}) => {
   const requestMethod = method.toLocaleUpperCase()
-  const token = getToken()
+  const token = getCookie(TOKEN_NAME) || ''
   const requestTime = new Date().getTime()
   data.token = token
   data.requestTime = requestTime
   const requestOption = {}
-  requestOption.url = otherUrl || url
+  requestOption.url = url
+  requestOption.baseURL = optionalParams.otherUrl || baseUrl
+  // 根据请求方法判断
   if (requestMethod === 'GET') {
     requestOption.method = 'get'
     requestOption.params = data
   } else if (requestMethod === 'POST') {
     requestOption.method = 'post'
-    requestOption.data = qs.stringify(data)
+    // 特殊请求头
+    if (optionalParams.headersType) {
+      if (optionalParams.headersType === 'form') {
+        requestOption.headers = { 'Content-Type': 'multipart/form-data' }
+      } else if (optionalParams.headersType === 'json') {
+        requestOption.headers = { 'Content-Type': 'application/json;charset=UTF-8' }
+        requestOption.withCredentials = false
+      }
+      requestOption.data = data
+    } else {
+      requestOption.data = qs.stringify(data)
+    }
   }
-  if (showLoading) {
+  // 是否需要loading样式
+  if (optionalParams.showLoading) {
     // 开启loading
     Toast.loading({
       duration: 0, // 持续展示 toast
@@ -111,7 +129,7 @@ export const fetch = (method, url, data = {}, showLoading = false, otherUrl) => 
   }
   const request = axiosInstance(requestOption)
     .then((res) => {
-      if (showLoading) {
+      if (optionalParams.showLoading) {
         Toast.clear()
       }
       return Promise.resolve(res)
