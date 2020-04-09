@@ -83,3 +83,8 @@ npm run build-test  // 构建测试包
 npm run build-prod  // 构建正式包 
 npm run report      // 项目打包分析 
 ```
+
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
