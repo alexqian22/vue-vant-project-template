@@ -1,6 +1,5 @@
 import axios from 'axios' // 引入axios
 import qs from 'qs' // 引入qs
-// import { tx } from "./api";
 import { baseUrl } from './env'
 import { Toast } from 'vant'
 import { getCookie, isExist } from './mUtils'
@@ -44,7 +43,6 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     const res = response.data
-    // console.log(res);
     const resultMsg = res.resultMsg
     if (res.code === SUCCESS_CODE) {
       return res
@@ -54,7 +52,6 @@ axiosInstance.interceptors.response.use(
     } else {
       if (isExist(resultMsg)) {
         if (resultMsg === '未登录，请先登录！' || resultMsg === 'The token is missing or expired!') {
-          // tx();
           return Promise.reject(res)
         } else {
           const leng = resultMsg.length
